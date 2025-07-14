@@ -1,0 +1,22 @@
+# 懒猫应用项目描述
+name: AI魔法书
+package: cloud.lazycat.app.aispellbook
+version: 0.0.2
+description: AI提示词构建器，帮助你快速构建AI提示词。
+license: https://choosealicense.com/licenses/mit/
+homepage: CATxPAPA.com
+author: CATxPAPA@gmail.com
+application:
+  subdomain: aispellbook
+  routes:
+    - /=exec://3000,./lzcapp/pkg/content/run.sh
+services:
+  mysql:
+    image: registry.lazycat.cloud/mysql
+    binds:
+      - /lzcapp/var/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=LAZYCAT
+      - MYSQL_DATABASE=LAZYCAT
+      - MYSQL_USER=LAZYCAT
+      - MYSQL_PASSWORD=LAZYCAT

@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# 懒猫微服应用文件结构构建脚本
+# 创建aipromptcomposer项目的完整目录和文件结构
+
+echo "开始构建懒猫微服应用文件结构..."
+
+# 创建主项目目录
+mkdir -p aispellbook
+
+# 进入项目目录
+cd aispellbook
+
+# 创建根目录配置文件
+echo "# 懒猫应用项目描述" > lzc-manifest.yml
+echo "# 懒猫应用打包构建描述" > lzc-build.yml
+
+# 创建app目录结构
+mkdir -p app/src/utils
+mkdir -p app/public
+
+# 创建app目录下的文件
+echo "# Node.js依赖配置" > app/package.json
+echo "# 启动脚本" > app/run.sh
+
+# 创建src目录下的文件
+echo "# 主应用入口" > app/src/app.js
+echo "# 数据库连接工具" > app/src/utils/db.js
+
+# 创建public目录下的文件
+echo "# 主页面HTML" > app/public/index.html
+echo "# 前端逻辑JS" > app/public/script.js
+echo "# 页面样式CSS" > app/public/style.css
+
+# 设置run.sh为可执行文件
+chmod +x app/run.sh
+
+echo "文件结构构建完成！"
+echo ""
+echo "生成的目录结构："
+tree aipromptcomposer 2>/dev/null || find aipromptcomposer -type f -exec echo {} \;
+
+echo ""
+echo "所有文件已创建，每个文件包含对应的注释说明。"
+echo "您可以开始在此基础上开发懒猫微服应用了！"
