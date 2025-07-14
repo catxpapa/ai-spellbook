@@ -1,0 +1,127 @@
+<!-- 应用主HTML页面 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 AI魔法书 - 提示词构建器</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 导航栏 -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1>🎨 AI魔法书</h1>
+                <button class="mobile-toggle" id="mobileToggle">☰</button>
+            </div>
+            
+            <!-- 模型筛选 -->
+            <div class="filter-section">
+                <select id="modelFilter" class="model-select">
+                    <option value="">所有模型</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="搜索公式..." class="search-input">
+            </div>
+            
+            <!-- 公式列表 -->
+            <div class="formula-list" id="formulaList">
+                <div class="loading">加载中...</div>
+            </div>
+        </nav>
+
+        <!-- 主工作区 -->
+        <main class="main-content">
+            <!-- 提示组合区 -->
+            <section class="compose-section">
+                <div class="compose-header">
+                    <h2 id="currentFormulaName">请选择一个公式</h2>
+                    <div class="compose-actions">
+                        <button id="editBtn" class="btn btn-secondary" disabled>修改</button>
+                        <button id="copyBtn" class="btn btn-primary" disabled>复制</button>
+                    </div>
+                </div>
+                
+                <div class="compose-content">
+                    <div id="formulaDisplay" class="formula-display">
+                        <p class="placeholder">请从左侧选择一个公式开始创作</p>
+                    </div>
+                    
+                    <!-- 编辑模式 -->
+                    <div id="editMode" class="edit-mode" style="display: none;">
+                        <textarea id="editTextarea" class="edit-textarea"></textarea>
+                        <div class="edit-actions">
+                            <button id="saveBtn" class="btn btn-primary">保存为新公式</button>
+                            <button id="cancelEditBtn" class="btn btn-secondary">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 片段列表区 -->
+            <section class="snippets-section">
+                <div class="snippets-header">
+                    <h3 id="currentTagName">片段列表</h3>
+                    <button id="addSnippetBtn" class="btn btn-secondary">+ 添加</button>
+                </div>
+                
+                <div class="snippets-content" id="snippetsContent">
+                    <div class="snippets-placeholder">
+                        <p>点击上方公式中的标签按钮来查看相关片段</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 添加片段弹窗 -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>添加新片段</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>标签 (用逗号分隔):</label>
+                    <input type="text" id="newTags" placeholder="例如: 主题,风格">
+                </div>
+                <div class="form-group">
+                    <label>片段简称:</label>
+                    <input type="text" id="newSnippetName" placeholder="例如: 美丽女孩">
+                </div>
+                <div class="form-group">
+                    <label>片段内容:</label>
+                    <textarea id="newSnippetContent" placeholder="例如: beautiful girl, portrait"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="submitSnippet" class="btn btn-primary">提交</button>
+                <button id="cancelSnippet" class="btn btn-secondary">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 保存公式弹窗 -->
+    <div id="saveModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>保存为新公式</h3>
+                <button class="modal-close" id="saveModalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>公式名称:</label>
+                    <input type="text" id="newFormulaName" placeholder="请输入公式名称">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="submitFormula" class="btn btn-primary">保存</button>
+                <button id="cancelFormula" class="btn btn-secondary">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
